@@ -1,15 +1,14 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
-	public CharacterController2D controller;
-	public Animator animator;
+	public CharacterController2D controller; //character 관리
+	public Animator animator; //animation 관리
     public Joystick joystick;
-    //coin
-    private gameMaster gm;
-
+   
+    private gameMaster gm; //life, gems, gameover, game clear 관리
     public float runSpeed = 40f;
 
 	float horizontalMove = 0f;
@@ -55,14 +54,13 @@ public class PlayerMovement : MonoBehaviour {
 
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
         animator.SetBool("Attacked", attacked);
-
     }
-
+    //착지시 점프 false로
 	public void OnLanding ()
 	{
 		animator.SetBool("IsJumping",false);
 	}
-
+    //앉기
 	public void OnCrouching (bool isCrouching)
 	{
 		animator.SetBool("IsCrouching", isCrouching);
@@ -78,25 +76,26 @@ public class PlayerMovement : MonoBehaviour {
     }
     void OnCollisionEnter2D(Collision2D col)
     {
-        Debug.Log("enter the ontrigger ");
-        Debug.Log("point " + gm.points);
-        if (col.gameObject.tag == "coin")
+        //보석에 닿았을때
+        if (col.gameObject.tag == "Gem")
         {
-            Debug.Log("touch ! " + gm.points);
-            gm.points += 1;
+            gm.gems += 1;
             Destroy(col.gameObject);
             
         }
+        //체리에 닿았을때 = 목숨+1
         if(col.gameObject.tag == "Cherry")
         {
             Destroy(col.gameObject);
-            gm.cherries += 1;
+            if(gm.cherries<5) gm.cherries += 1;
         }
+        //몬스터에게 닿았을때 = 목숨-1
         if(col.gameObject.tag == "Enemy")
         {
             gm.cherries -= 1;
             attacked = true;
         }
+        //낭떠러지에 떨어질때
         if(col.gameObject.tag == "Hell")
         {
             gm.hell = true;

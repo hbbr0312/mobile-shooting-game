@@ -5,11 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Through
-  - coin
   - GameMaster
   - Cherry
   - Enemy
   - Hell
+  - Gem
   layers:
   - Default
   - TransparentFX
@@ -21,7 +21,7 @@ TagManager:
   - 
   - Player
   - Obstacle
-  - coin
+  - gem
   - cherry
   - 
   - 
@@ -44,7 +44,16 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Background
+  - name: background0
+    uniqueID: 2130474859
+    locked: 0
+  - name: background1
+    uniqueID: 191932635
+    locked: 0
+  - name: backobject
+    uniqueID: 3907063811
+    locked: 0
+  - name: Tilemap
     uniqueID: 1611635347
     locked: 0
   - name: Default

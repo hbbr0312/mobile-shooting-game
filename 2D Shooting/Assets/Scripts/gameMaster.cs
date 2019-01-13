@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 public class gameMaster : MonoBehaviour
 {
-    public int points;
-    public int cherries;
-    public bool hell;
-
+    public int gems;
+    public int cherries; //목숨을 의미
+    public bool hell; //낭떠러지에 닿았는지
+    public bool bossdie;
     public Text pointsText;
-    public Text cherriesText;
     public Text gameover;
+    public Text gameclear;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,11 +22,21 @@ public class gameMaster : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("text update!");
-        pointsText.text = ("Points: " + points);
-        cherriesText.text = ("Cherries: " +cherries);
-        //gameover
-        if (hell || cherries <= 0) gameover.text = "GAME OVER !!!!";
+        pointsText.text = ("X " + gems); //gems number update in mainCanvas
+        //Game Over => TODO : game over scene으로 전환
+        if (cherries <= 0 || hell)
+        {
+            Debug.Log("gameover");
+            gameover.text = "GAME OVER !!!!";
+        }
         else gameover.text = "";
+
+        //Game Clear => TODO : game clear scene(다음스테이지)으로 전환
+        if (bossdie)
+        {
+            Debug.Log("game clear");
+            gameclear.text = "GAME CLEAR !!!!";
+        }
+        else gameclear.text = "";
     }
 }
