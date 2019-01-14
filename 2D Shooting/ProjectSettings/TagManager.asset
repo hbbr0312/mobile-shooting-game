@@ -10,6 +10,10 @@ TagManager:
   - Enemy
   - Hell
   - Gem
+  - tuto_start
+  - tuto_frog
+  - tuto_finish
+  - tuto_gem
   layers:
   - Default
   - TransparentFX

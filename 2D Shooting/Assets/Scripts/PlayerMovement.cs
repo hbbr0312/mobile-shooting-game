@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour {
         {
             gm.gems += 1;
             Destroy(col.gameObject);
-            
+            FindObjectOfType<SoundManagerScript>().Play("gotitem");
         }
         //체리에 닿았을때 = 목숨+1
         if(col.gameObject.tag == "Cherry")
@@ -92,13 +92,47 @@ public class PlayerMovement : MonoBehaviour {
         //몬스터에게 닿았을때 = 목숨-1
         if(col.gameObject.tag == "Enemy")
         {
-            gm.cherries -= 1;
+            if (gm.cherries >0) gm.cherries -= 1;
             attacked = true;
+
         }
         //낭떠러지에 떨어질때
         if(col.gameObject.tag == "Hell")
         {
             gm.hell = true;
+            Destroy(col.gameObject);
+        }
+
+
+        /****튜토리얼****/
+        //when touching tuto_startline
+        if (col.gameObject.tag == "tuto_start")
+        {
+            gm.tutoindex = 0;
+            Destroy(col.gameObject);
+        }
+
+        //when touching a cute frog
+        if (col.gameObject.tag == "tuto_frog")
+        {
+            gm.tutoindex = 1;
+            gm.cherries -= 1;
+            attacked = true;
+        }
+
+        //when touchig a gem
+        if (col.gameObject.tag == "tuto_gem")
+        {
+            gm.tutoindex = 3;
+            gm.gems += 1;
+            Destroy(col.gameObject);
+            FindObjectOfType<SoundManagerScript>().Play("gotitem");
+        }
+
+        //when touching tuto_finishingline
+        if (col.gameObject.tag == "tuto_finish")
+        {
+            gm.tutoindex = 4;
             Destroy(col.gameObject);
         }
     }
