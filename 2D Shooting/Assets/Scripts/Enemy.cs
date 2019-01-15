@@ -31,11 +31,11 @@ public class Enemy : MonoBehaviour {
         if (isBoss)
         {
             if (gm.tutorialtextOn) gm.tutoindex = 5;
-            gm.bossdie = true;
         }
         if(gameObject.tag == "tuto_frog")
         {
             gm.tutoindex = 2;
+            FindObjectOfType<SoundManagerScript>().Stop("frog");
         }
 
         Debug.Log("is boss ? = " + isBoss);

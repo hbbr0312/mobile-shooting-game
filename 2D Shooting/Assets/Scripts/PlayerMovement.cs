@@ -88,16 +88,25 @@ public class PlayerMovement : MonoBehaviour {
         {
             Destroy(col.gameObject);
             if(gm.cherries<5) gm.cherries += 1;
+            FindObjectOfType<SoundManagerScript>().Play("successful");
+        }
+        //마지막 보스죽이고 체리에 먹었을때 = 목숨+1 & clear!
+        if (col.gameObject.tag == "final_cherry")
+        {
+            Destroy(col.gameObject);
+            if (gm.cherries < 5) gm.cherries += 1;
+            FindObjectOfType<SoundManagerScript>().Play("successful");
+            gm.clear = true;
         }
         //몬스터에게 닿았을때 = 목숨-1
-        if(col.gameObject.tag == "Enemy")
+        if (col.gameObject.tag == "Enemy")
         {
             if (gm.cherries >0) gm.cherries -= 1;
             attacked = true;
 
         }
         //낭떠러지에 떨어질때
-        if(col.gameObject.tag == "Hell")
+        if (col.gameObject.tag == "Hell")
         {
             gm.hell = true;
             Destroy(col.gameObject);
