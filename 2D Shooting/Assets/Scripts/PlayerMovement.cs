@@ -137,12 +137,5 @@ public class PlayerMovement : MonoBehaviour {
             Destroy(col.gameObject);
             FindObjectOfType<SoundManagerScript>().Play("gotitem");
         }
-
-        //when touching tuto_finishingline
-        if (col.gameObject.tag == "tuto_finish")
-        {
-            gm.tutoindex = 4;
-            Destroy(col.gameObject);
-        }
     }
 }

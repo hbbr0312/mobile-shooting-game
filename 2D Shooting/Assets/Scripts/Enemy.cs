@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour {
 
 	public int health = 100;
     public bool isBoss;
+    public bool bossofboss;
 
 	public GameObject deathEffect;
     private gameMaster gm;
@@ -27,10 +28,12 @@ public class Enemy : MonoBehaviour {
 
 	void Die ()
 	{
+        gm.monster += 1;
 		Instantiate(deathEffect, transform.position, Quaternion.identity);
         if (isBoss)
         {
-            if (gm.tutorialtextOn) gm.tutoindex = 5;
+            if (bossofboss) gm.clear=true;
+            if (gm.tutorialtextOn) gm.tutoindex = 4;
         }
         if(gameObject.tag == "tuto_frog")
         {
@@ -41,5 +44,4 @@ public class Enemy : MonoBehaviour {
         Debug.Log("is boss ? = " + isBoss);
         Destroy(gameObject);
 	}
-
 }
